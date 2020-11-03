@@ -1,0 +1,15 @@
+.post-item {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.post-item label {
+  margin-right: 0.3rem;
+  margin-bottom: 0.4rem;
+}
+
+.post-item input {
+  padding: 0.3rem;
+}
