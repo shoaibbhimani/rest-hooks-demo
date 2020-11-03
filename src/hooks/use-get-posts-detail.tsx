@@ -1,11 +1,8 @@
-import { useResource } from "rest-hooks";
-
+import { useFetcher } from "rest-hooks";
 import GetPostsResource from "../resources/posts";
 
-const useGetPostsDetail = ({ id }: { id: number }) => {
-  return useResource(GetPostsResource.detailShape(), {
-    id,
-  });
+const useGetPostsDetail = () => {
+  return useFetcher(GetPostsResource.detailShape());
 };
 
 export { useGetPostsDetail };

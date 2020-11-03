@@ -10,14 +10,14 @@ import "./post-list.css";
 
 const PostList = () => {
   const posts: GetPostsType[] = useGetPosts();
-
-  const [selectedPostId, setSelectedPostId] = useState<number>();
+  const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
   const deletePost = useDeletePost();
-  const {
-    isOpen: isPostDetailOpen,
-    onOpen: onPostDetailOpen,
-    onClose: onPostDetailClose,
-  } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const onCloseHandler = () => {
+    setSelectedPostId(null);
+    onClose();
+  };
 
   return (
     <>
@@ -34,8 +34,8 @@ const PostList = () => {
                   size="sm"
                   variant="ghost"
                   onClick={() => {
-                    setSelectedPostId(post.id);
-                    onPostDetailOpen();
+                    setSelectedPostId(post.id ? post.id : null);
+                    // onOpen();
                   }}
                 >
                   View
@@ -55,14 +55,8 @@ const PostList = () => {
         })}
       </ul>
 
-      <Modal
-        isOpen={isPostDetailOpen}
-        onClose={onPostDetailClose}
-        title="Post Detail"
-      >
-        {selectedPostId !== undefined ? (
-          <PostDetail id={selectedPostId} />
-        ) : null}
+      <Modal isOpen={isOpen} onClose={onCloseHandler} title="Post Detail">
+        {selectedPostId !== null && <PostDetail id={selectedPostId} />}
       </Modal>
     </>
   );
