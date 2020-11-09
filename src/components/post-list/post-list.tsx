@@ -29,13 +29,13 @@ const PostList = () => {
           return (
             <li className="post-list-item" key={post.id}>
               <div>
-                {post.title}{" "}
+                {post.title}
                 <Button
                   size="sm"
                   variant="ghost"
                   onClick={() => {
                     setSelectedPostId(post.id ? post.id : null);
-                    // onOpen();
+                    onOpen();
                   }}
                 >
                   View
