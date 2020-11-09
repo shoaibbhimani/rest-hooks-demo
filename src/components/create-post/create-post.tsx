@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, ChangeEvent } from "react";
+import React, { useState, FormEvent, ChangeEvent, useEffect } from "react";
 import {
   FormControl,
   FormLabel,
@@ -7,33 +7,53 @@ import {
   Heading,
 } from "@chakra-ui/core";
 
-import { useCreatePost } from "../../hooks/use-create-posts";
+import { useCreatePost, useEditPost } from "../../hooks/use-create-posts";
 import { InvalidateGetPost } from "../../hooks/use-get-posts";
+import { useFetcherGetPostsDetail } from "../../hooks/use-get-posts-detail";
 
 import "./create-post.css";
 
-const CreatePost = () => {
+type CreateTypeProps = {
+  postId?: number;
+};
+
+const CreatePost = ({ postId }: CreateTypeProps) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const createPost = useCreatePost();
+  const editPost = useEditPost();
   const refetchGetPost = InvalidateGetPost();
+  const fetcherPostDetail = useFetcherGetPostsDetail();
 
   const onSubmitHandler = (e: FormEvent) => {
     e.preventDefault();
 
-    createPost(
-      {},
-      {
-        title,
-        description,
-        completed: false,
-      }
-    ).then(() => {
-      refetchGetPost({});
-      setTitle("");
-      setDescription("");
-    });
+    if (postId) {
+      editPost({ id: postId }, { title, description });
+    } else {
+      createPost(
+        {},
+        {
+          title,
+          description,
+          completed: false,
+        }
+      ).then(() => {
+        refetchGetPost({});
+        setTitle("");
+        setDescription("");
+      });
+    }
   };
+
+  useEffect(() => {
+    if (postId) {
+      fetcherPostDetail({ id: postId }).then(({ title, description }) => {
+        setTitle(title);
+        setDescription(description);
+      });
+    }
+  }, [postId]);
 
   return (
     <section>

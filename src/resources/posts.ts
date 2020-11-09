@@ -6,8 +6,6 @@ export type PostTypes = {
   completed: boolean;
 };
 
-const PORT = 'http://localhost:3003/posts/';
-
 export default class PostsResource extends Resource {
   readonly id: number | undefined = undefined;
   readonly title: string = "";
@@ -20,7 +18,7 @@ export default class PostsResource extends Resource {
 
   // used for Create Shape and List Shape
   static listUrl<T extends typeof Resource>(this: T): string {
-    return PORT;
+    return `http://localhost:3002/posts`;
   }
 
   // For Rest
@@ -28,7 +26,7 @@ export default class PostsResource extends Resource {
     this: T,
     { id }: { id: number }
   ): string {
-    return `${PORT}${id}`;
+    return `http://localhost:3002/posts/${id}`;
   }
 }
 

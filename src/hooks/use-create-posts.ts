@@ -6,4 +6,8 @@ const useCreatePost = () => {
   return useFetcher(GetPostsResource.createShape());
 };
 
-export { useCreatePost };
+const useEditPost = () => {
+  return useFetcher(GetPostsResource.updateShape());
+};
+
+export { useCreatePost, useEditPost };

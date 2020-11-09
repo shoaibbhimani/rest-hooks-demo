@@ -7,8 +7,12 @@ const middlewares = jsonServer.defaults();
 server.use(middlewares);
 
 // Add custom routes before JSON Server router
-server.get("/echo", (req, res) => {
-  res.jsonp(req.query);
+server.get("/project-info/:productId/category/:categoryName", (req, res) => {
+  res.send({
+    title: "Product Title",
+    desc:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  });
 });
 
 // To handle POST, PUT and PATCH you need to use a body-parser
@@ -24,6 +28,6 @@ server.use((req, res, next) => {
 
 // Use default router
 server.use(router);
-server.listen(3003, () => {
+server.listen(3002, () => {
   console.log("JSON Server is running");
 });

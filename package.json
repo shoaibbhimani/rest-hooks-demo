@@ -3,18 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/core": "^0.8.0",
+    "@emotion/core": "^10.0.35",
+    "@emotion/styled": "^10.0.27",
+    "emotion-theming": "^10.0.27",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "rest-hooks": "^4.5.9",
     "web-vitals": "^0.2.4"
   },
-  "devDependencies": {
-    "react-scripts": "4.0.0",
-    "typescript": "4.0.0"
-  },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=5000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "db": "node server.js"
   },
   "eslintConfig": {
     "extends": [
@@ -33,5 +36,21 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.19.1",
+    "@types/react": "^16.9.53",
+    "@types/react-dom": "^16.9.8",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "json-server": "^0.16.2",
+    "react-scripts": "4.0.0",
+    "typescript": "^4.0.3"
   }
 }

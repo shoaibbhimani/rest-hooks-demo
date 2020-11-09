@@ -25,11 +25,7 @@ const Modal = ({ isOpen, onClose, children, title }: ModalProps) => (
       <ModalCloseButton />
       <ModalBody>{children}</ModalBody>
 
-      <ModalFooter>
-        <Button variantColor="blue" mr={3} onClick={onClose}>
-          Close
-        </Button>
-      </ModalFooter>
+      <ModalFooter></ModalFooter>
     </ModalContent>
   </ModalComponent>
 );
